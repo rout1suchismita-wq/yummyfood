@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TastyBite | Online Food Delivery</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;color:#242424;background:#fff}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:white;gap:18px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:bold;color:#ed303b}
+nav a{text-decoration:none;color:#333;margin:0 9px;font-size:14px}
+nav a:hover{color:#ed303b}
+.btn{display:inline-block;border:0;background:#ed303b;color:white;padding:12px 20px;border-radius:25px;text-decoration:none;cursor:pointer}
+.hero{min-height:370px;background:linear-gradient(90deg,#101820ee,#10182030),url('https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1600&q=85') center/cover;display:flex;align-items:center;padding:60px 8%;color:white}
+.hero-content{max-width:470px}
+.hero h1{font-size:clamp(38px,5vw,58px);margin-bottom:15px}
+.hero h1 span{color:#ff4852}
+.hero p{line-height:1.8;margin-bottom:22px;color:#eee}
+section{padding:48px 7%}
+.section-title{text-align:center;margin-bottom:28px}
+.section-title h2{font-size:27px;margin-bottom:9px}
+.section-title p{color:#777;font-size:14px}
+.signature{background:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{text-align:center;padding:20px 8px;border:1px solid #eee;border-radius:8px;box-shadow:0 4px 15px #00000008}
+.stat b{display:block;font-size:25px;margin-bottom:8px}
+.stat span{font-size:13px;color:#666}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.category{position:relative;height:170px;border-radius:8px;overflow:hidden}
+.category img{width:100%;height:100%;object-fit:cover;transition:.3s}
+.category:hover img{transform:scale(1.08)}
+.category h3{position:absolute;bottom:0;left:0;right:0;padding:18px 5px 12px;text-align:center;color:white;background:linear-gradient(transparent,#000c)}
+.menu-banner{background:linear-gradient(#101820bb,#101820bb),url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=85') center/cover;text-align:center;color:white;padding:55px 15px}
+.menu-banner h2{font-size:32px;margin-bottom:12px}
+.menu-banner span{color:#ff4852}
+.menu-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.menu-layout>img{width:100%;height:360px;object-fit:cover;border-radius:8px}
+.menu-list h3{margin-bottom:15px}
+.menu-item{display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px dashed #ddd;font-size:14px}
+.menu-item p{color:#777;margin-top:5px;font-size:12px}
+.menu-item strong{color:#ed303b;white-space:nowrap}
+.food-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.food-card{border:1px solid #eee;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px #00000008}
+.food-card img{width:100%;height:155px;object-fit:cover}
+.food-info{padding:14px}
+.food-info h3{font-size:16px;margin-bottom:9px}
+.rating{color:#e9a323;font-size:13px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.price{font-weight:bold;color:#ed303b}
+.add{border:0;background:#ed303b;color:white;padding:9px 12px;border-radius:5px;cursor:pointer}
+.blog-grid,.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.blog-card,.review{border:1px solid #eee;border-radius:8px;overflow:hidden;padding-bottom:15px}
+.blog-card img{width:100%;height:160px;object-fit:cover}
+.blog-card h3,.blog-card p{margin:12px 15px}
+.blog-card p,.review p{font-size:13px;color:#777;line-height:1.7}
+.review{padding:22px;background:#fafafa}
+.review h3{margin-top:15px;font-size:15px}
+.review .stars{color:#e9a323;margin-bottom:12px}
+.cta{text-align:center;background:#fff0f0}
+.cta p{margin:12px 0 20px;color:#666}
+footer{background:#171717;color:white;padding:35px 7%;text-align:center}
+footer p{color:#bbb;margin-top:12px;font-size:13px}
+.cart-float{position:fixed;bottom:20px;right:20px;background:#ed303b;color:white;border:0;border-radius:30px;padding:15px 20px;box-shadow:0 5px 18px #0003;cursor:pointer}
+@media(max-width:800px){
+ .hero{padding:45px 7%;min-height:330px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .categories{grid-template-columns:repeat(3,1fr)}
+ .food-grid{grid-template-columns:repeat(2,1fr)}
+ .menu-layout{grid-template-columns:1fr}
+ .menu-layout>img{height:250px}
+ nav{justify-content:center}
+ nav .links{text-align:center;line-height:2.5}
+}
+@media(max-width:480px){
+ section{padding:35px 5%}
+ .categories{grid-template-columns:repeat(2,1fr)}
+ .food-grid{gap:10px}
+ .food-card img{height:125px}
+ .food-info{padding:10px}
+ .food-info h3{font-size:14px}
+ .blog-grid,.reviews{grid-template-columns:1fr}
+ .hero h1{font-size:38px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="logo">🍅 TastyBite</div>
+ <div class="links">
+  <a href="#home">Home</a>
+  <a href="#categories">Categories</a>
+  <a href="#menu">Menu</a>
+  <a href="#blog">Blog</a>
+  <a href="#reviews">Reviews</a>
+ </div>
+ <a href="#menu" class="btn">Order Now</a>
+</nav>
+
+<header class="hero" id="home">
+ <div class="hero-content">
+  <p>WELCOME TO TASTYBITE</p>
+  <h1>Order the Best <span>Food</span></h1>
+  <p>Take amazing food to your door. Fresh ingredients, delicious meals and fast delivery for every craving.</p>
+  <a class="btn" href="#menu">Order Now →</a>
+ </div>
+</header>
+
+<section class="signature">
+ <div class="section-title">
+  <h2>Our Signature Dishes</h2>
+  <p>Fresh taste, made with love</p>
+ </div>
+ <div class="stats">
+  <div class="stat"><b>🍕</b><span>Fresh Pizza</span><h3>From ₹199</h3></div>
+  <div class="stat"><b>🍔</b><span>Juicy Burgers</span><h3>From ₹129</h3></div>
+  <div class="stat"><b>🍝</b><span>Italian Pasta</span><h3>From ₹179</h3></div>
+  <div class="stat"><b>🍰</b><span>Sweet Desserts</span><h3>From ₹99</h3></div>
+ </div>
+</section>
+
+<section id="categories">
+ <div class="section-title">
+  <h2>Explore Our Categories</h2>
+  <p>Something delicious for everyone</p>
+ </div>
+ <div class="categories">
+  <a class="category" href="#menu"><img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80" alt="Pizza"><h3>Pizza</h3></a>
+  <a class="category" href="#menu"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger"><h3>Burgers</h3></a>
+  <a class="category" href="#menu"><img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=500&q=80" alt="Rice dish"><h3>Rice & Biryani</h3></a>
+  <a class="category" href="#menu"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=500&q=80" alt="Noodles"><h3>Noodles</h3></a>
+  <a class="category" href="#menu"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=500&q=80" alt="Cake"><h3>Desserts</h3></a>
+ </div>
+</section>
+
+<div class="menu-banner">
+ <h2>Order Food <span>Online</span></h2>
+ <p>Take delicious food to your door</p>
+ <br><a href="#menu" class="btn">Explore Our Menu</a>
+</div>
+
+<section id="menu">
+ <div class="section-title">
+  <h2>Our Delicious Menu</h2>
+  <p>Choose your favourite and add it to your cart</p>
+ </div>
+ <div class="menu-layout">
+  <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=85" alt="Delicious breakfast">
+  <div class="menu-list">
+   <h3>⭐ Chef's Special</h3>
+   <div class="menu-item"><div><b>Classic Veg Burger</b><p>Fresh veggies, cheese and special sauce</p></div><strong>₹129</strong></div>
+   <div class="menu-item"><div><b>Margherita Pizza</b><p>Cheese, tomato and Italian herbs</p></div><strong>₹199</strong></div>
+   <div class="menu-item"><div><b>Paneer Biryani</b><p>Fragrant rice with spices and paneer</p></div><strong>₹219</strong></div>
+   <div class="menu-item"><div><b>White Sauce Pasta</b><p>Creamy pasta with herbs</p></div><strong>₹179</strong></div>
+   <div class="menu-item"><div><b>Chocolate Cake</b><p>Rich and delicious chocolate dessert</p></div><strong>₹99</strong></div>
+  </div>
+ </div>
+</section>
+
+<section style="background:#fafafa">
+ <div class="section-title">
+  <h2>Popular Near You</h2>
+  <p>Our customers' favourite picks</p>
+ </div>
+ <div class="food-grid">
+  <article class="food-card">
+   <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80" alt="Burger">
+   <div class="food-info"><h3>Classic Burger</h3><div class="rating">★★★★★ 4.8</div><div class="price-row"><span class="price">₹129</span><button class="add" onclick="addToCart('Classic Burger',129)">+ Add</button></div></div>
+  </article>
+  <article class="food-card">
+   <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80" alt="Pizza">
+   <div class="food-info"><h3>Cheese Pizza</h3><div class="rating">★★★★★ 4.7</div><div class="price-row"><span class="price">₹199</span><button class="add" onclick="addToCart('Cheese Pizza',199)">+ Add</button></div></div>
+  </article>
+  <article class="food-card">
+   <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=500&q=80" alt="Rice">
+   <div class="food-info"><h3>Special Biryani</h3><div class="rating">★★★★★ 4.9</div><div class="price-row"><span class="price">₹219</span><button class="add" onclick="addToCart('Special Biryani',219)">+ Add</button></div></div>
+  </article>
+  <article class="food-card">
+   <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=500&q=80" alt="Noodles">
+   <div class="food-info"><h3>Hakka Noodles</h3><div class="rating">★★★★☆ 4.5</div><div class="price-row"><span class="price">₹159</span><button class="add" onclick="addToCart('Hakka Noodles',159)">+ Add</button></div></div>
+  </article>
+ </div>
+</section>
+
+<section id="blog">
+ <div class="section-title">
+  <h2>Recent Food Blog</h2>
+  <p>Stories, recipes and inspiration for food lovers</p>
+ </div>
+ <div class="blog-grid">
+  <article class="blog-card"><img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=80" alt="Fried food"><h3>Secrets of Crispy Snacks</h3><p>Discover tasty ideas for your next snack time.</p></article>
+  <article class="blog-card"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=500&q=80" alt="Healthy meal"><h3>Fresh and Healthy Meals</h3><p>Simple inspiration for delicious everyday meals.</p></article>
+  <article class="blog-card"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=500&q=80" alt="Pasta"><h3>Our Favourite Pasta Recipes</h3><p>Bring the flavours of Italy to your table.</p></article>
+ </div>
+</section>
+
+<section id="reviews" style="background:#fafafa">
+ <div class="section-title">
+  <h2>Customer Reviews</h2>
+  <p>What food lovers say about TastyBite</p>
+ </div>
+ <div class="reviews">
+  <article class="review"><div class="stars">★★★★★</div><p>"Delicious food and a beautiful variety of options. The website is very easy to use!"</p><h3>Priya S.</h3></article>
+  <article class="review"><div class="stars">★★★★★</div><p>"Loved the taste and the menu. The burger was fresh and full of flavour."</p><h3>Rahul K.</h3></article>
+  <article class="review"><div class="stars">★★★★★</div><p>"A lovely food ordering experience. I will definitely explore more dishes."</p><h3>Ananya M.</h3></article>
+ </div>
+</section>
+
+<section class="cta">
+ <h2>Hungry? Let's Make You Happy!</h2>
+ <p>Your next favourite meal is waiting for you.</p>
+ <a class="btn" href="#menu">Order Your Food</a>
+</section>
+
+<footer id="contact">
+ <h2>🍅 TastyBite</h2>
+ <p>Delicious Food, Delivered to Your Door!</p>
+ <p>Home · Menu · Categories · Contact</p>
+ <p>© 2026 TastyBite. Demo website for learning.</p>
+</footer>
+
+<button class="cart-float" onclick="showCart()">🛒 Cart (<span id="cartCount">0</span>) · ₹<span id="cartTotal">0</span></button>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
+    alert(name + " added to your cart!");
+}
+
+function updateCart() {
+    document.getElementById("cartCount").textContent = cart.length;
+    document.getElementById("cartTotal").textContent =
+        cart.reduce((total, item) => total + item.price, 0);
+}
+
+function showCart() {
+    if (cart.length === 0) {
+        alert("Your cart is empty. Please add some food!");
+        return;
+    }
+
+    let details = cart.map((item, i) =>
+        (i + 1) + ". " + item.name + " - ₹" + item.price
+    ).join("\n");
+
+    alert("YOUR TASTYBITE CART\n\n" + details +
+        "\n\nTotal: ₹" +
+        cart.reduce((total, item) => total + item.price, 0) +
+        "\n\nThis demo does not place a real order.");
+}
+</script>
+
+</body>
+</html>
